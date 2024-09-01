@@ -16,12 +16,13 @@ def main(context):
     # Allow cross-origin requests
     context.res.set_header('Access-Control-Allow-Origin', '*')
 
-    # If it's a GET request, return a plain text response with the incremented value
+    # Check if the request method is GET
     if context.req.method == "GET":
+        # Set response type as plain text
         context.res.set_header('Content-Type', 'text/plain')
         return context.res.send(f"Hello, World! Current value of i: {i}")
 
-    # If it's not a GET request, respond with a JSON message
+    # For non-GET requests, set response type as JSON
     context.res.set_header('Content-Type', 'application/json')
     return context.res.json(
         {
