@@ -15,6 +15,7 @@ def main(context):
 
     # If it's a GET request, return a response with the incremented value
     if context.req.method == "GET":
+        context.res.set_header('Access-Control-Allow-Origin', '*')
         return context.res.send(f"Hello, World! Current value of i: {i}")
 
     # If it's not a GET request, respond with a JSON message
