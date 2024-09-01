@@ -13,12 +13,15 @@ def main(context):
     # Log the current value of i
     context.log(f"Current value of i: {i}")
 
-    # If it's a GET request, return a response with the incremented value
+    # Set CORS headers to allow cross-origin requests
+    context.res.set_header('Access-Control-Allow-Origin', '*')
+    context.res.set_header('Content-Type', 'application/json')
+
+    # Handle GET request
     if context.req.method == "GET":
-        context.res.set_header('Access-Control-Allow-Origin', '*')
         return context.res.send(f"Hello, World! Current value of i: {i}")
 
-    # If it's not a GET request, respond with a JSON message
+    # Handle other requests with JSON response
     return context.res.json(
         {
             "motto": "Build like a team of hundreds_",
