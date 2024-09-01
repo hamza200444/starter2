@@ -1,6 +1,6 @@
 from appwrite.client import Client
 import os
-
+i = int(os.environ.get("COUNTER", 0))
 
 # This is your Appwrite function
 # It's executed each time we get a request
@@ -15,6 +15,13 @@ def main(context):
     # )
 
     # You can log messages to the console
+     global i  # Ensure i is treated as a global variable
+    
+    # Increment i
+    i += 1
+
+    # Log the current value of i
+    context.log(f"Current value of i: {i}")
     context.log("Hello, Logs!")
 
     # If something goes wrong, log an error
@@ -24,7 +31,7 @@ def main(context):
     if context.req.method == "GET":
         # Send a response with the res object helpers
         # `ctx.res.send()` dispatches a string back to the client
-        return context.res.send("Hello, World!mnvccnvhcfg")
+        return context.res.send(f"Hello, World! Current value of i: {i}")
 
     # `ctx.res.json()` is a handy helper for sending JSON
     return context.res.json(
@@ -33,5 +40,6 @@ def main(context):
             "learn": "https://appwrite.io/docs",
             "connect": "https://appwrite.io/discord",
             "getInspired": "https://builtwith.appwrite.io",
+             "counter": i
         }
     )
